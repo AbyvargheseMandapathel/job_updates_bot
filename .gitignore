@@ -1,0 +1,3 @@
+# Ignore contents of the env folder
+env/*
+.env
