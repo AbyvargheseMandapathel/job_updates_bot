@@ -31,7 +31,7 @@ Create a `.env` file in the root directory of the project and add the following 
 ```bash
 TELEGRAM_API=<your_telegram_api_key>
 CHAT_ID=<your_telegram_chat_id>
-START_URLS=https://internfreak.co/jobs-and-internship-opportunities?page=1&limit=15
+START_URLS=
 ```
 
 ## Usage
