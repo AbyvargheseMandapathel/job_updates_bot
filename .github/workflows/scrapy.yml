@@ -6,11 +6,12 @@ on:
   pull_request:
     branches: [ "main" ]
   schedule:
-    - cron: '00 23 * * *'
+    - cron: '00 12 * * *'
 
 env:
   CHAT_ID: ${{ secrets.CHAT_ID }}
   TELEGRAM_API: ${{ secrets.TELEGRAM_API }}
+  START_URLS : ${{ secrets.START_URLS }}
 
 jobs:
   build:

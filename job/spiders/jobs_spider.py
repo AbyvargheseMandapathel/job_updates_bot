@@ -11,7 +11,7 @@ dotenv.load_dotenv()
 
 class JobsSpider(scrapy.Spider):
     name = 'jobs'
-    start_urls = ['https://internfreak.co/jobs-and-internship-opportunities?page=1&limit=15']
+    start_urls = [os.getenv("START_URLS")]
     output_file = 'output.csv'
     telegram_api_key = os.environ["TELEGRAM_API"]
     telegram_chat_id = os.environ["CHAT_ID"]
