@@ -43,4 +43,4 @@ jobs:
           git config --local user.name ${{ secrets.GIT_NAME }}
           git add output.csv
           git commit -m "Update output.csv - ${{ steps.datetime.outputs.date }}"
-          git push
+          git push origin main
