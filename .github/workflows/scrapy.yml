@@ -11,27 +11,36 @@ on:
 env:
   CHAT_ID: ${{ secrets.CHAT_ID }}
   TELEGRAM_API: ${{ secrets.TELEGRAM_API }}
-  START_URLS : ${{ secrets.START_URLS }}
+  START_URLS: ${{ secrets.START_URLS }}
 
 jobs:
-  build:
-
+  update_csv:
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 4
-      matrix:
-        python-version: [3.11]
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-    - name: Run Server
-      run: |
-        scrapy crawl jobs -o output.csv
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set date and time
+        id: datetime
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d %H:%M:%S')"
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Server
+        run: scrapy crawl jobs -o output.csv
+
+      - name: Commit Changes
+        run: |
+          git config --local user.email "${{ secrets.GIT_USER_EMAIL }}"
+          git config --local user.name "${{ secrets.GIT_USER_NAME }}"
+          git add output.csv
+          git commit -m "Update output.csv - ${{ steps.datetime.outputs.date }}"
+          git push
