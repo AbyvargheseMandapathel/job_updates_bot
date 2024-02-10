@@ -37,10 +37,10 @@ jobs:
       - name: Run Server
         run: scrapy crawl jobs -o output.csv
 
-      - name: Commit Changes
+      - name: Commit files
         run: |
-          git config --local user.email "${{ secrets.GIT_USER_EMAIL }}"
-          git config --local user.name "${{ secrets.GIT_USER_NAME }}"
+          git config --local user.email ${{ secrets.GIT_EMAIL }}
+          git config --local user.name ${{ secrets.GIT_NAME }}
           git add output.csv
           git commit -m "Update output.csv - ${{ steps.datetime.outputs.date }}"
           git push
