@@ -10,7 +10,7 @@
 
 ## Description
 
-This is a Scrapy project designed to scrape job listings from internfreak.co and send them to a Telegram channel. The project utilizes Scrapy for web scraping, pandas for data manipulation, and the requests library for sending messages to Telegram.
+This is a Scrapy project designed to scrape job listings from various sites and send them to a Telegram channel. The project utilizes Scrapy for web scraping, pandas for data manipulation, and the requests library for sending messages to Telegram.
 
 ## Installation
 
